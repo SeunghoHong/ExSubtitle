@@ -15,9 +15,11 @@
 
 import Foundation
 
-class SubRip: TimedText {
+class SRT: TimedText {
+    var cues: [Int64 : Cue] = [:]
 
     func parse(_ data: Data) -> Bool {
+        // TODO: line parser
         return false
     }
 }

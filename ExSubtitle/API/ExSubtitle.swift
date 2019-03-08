@@ -21,7 +21,7 @@ public class ExSubtitle : NSObject {
 
     private var impl: ExSubtitleInternal!
 
-    init(player: AVPlayer) {
+    public init(player: AVPlayer) {
         self.impl = ExSubtitleInternal(player: player)
     }
 
@@ -30,7 +30,14 @@ public class ExSubtitle : NSObject {
 
 public extension ExSubtitle {
 
-    func prepare(with source: Data, mimetype: MimeType) {
-        self.impl.prepare(with: source, mimetype: mimetype)
+    func parse(with source: Data, mimetype: MimeType) {
+        self.impl.parse(with: source, mimetype: mimetype)
+    }
+}
+
+public extension ExSubtitle {
+
+    func setOnCue(_ onCue: @escaping ((Cue) -> Void)) {
+        self.impl.onCue = onCue
     }
 }

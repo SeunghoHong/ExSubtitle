@@ -12,7 +12,23 @@
 		267DF162221BDD1500E8BAA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 267DF160221BDD1500E8BAA6 /* Main.storyboard */; };
 		267DF164221BDD1600E8BAA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 267DF163221BDD1600E8BAA6 /* Assets.xcassets */; };
 		267DF167221BDD1600E8BAA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 267DF165221BDD1600E8BAA6 /* LaunchScreen.storyboard */; };
+		267DF174221BDF2200E8BAA6 /* ExSubtitle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 267DF173221BDF2200E8BAA6 /* ExSubtitle.framework */; };
+		267DF175221BDF2200E8BAA6 /* ExSubtitle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 267DF173221BDF2200E8BAA6 /* ExSubtitle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		267DF176221BDF2300E8BAA6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				267DF175221BDF2200E8BAA6 /* ExSubtitle.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		267DF159221BDD1500E8BAA6 /* ExSubtitleDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExSubtitleDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,6 +38,7 @@
 		267DF163221BDD1600E8BAA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		267DF166221BDD1600E8BAA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		267DF168221BDD1600E8BAA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		267DF173221BDF2200E8BAA6 /* ExSubtitle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExSubtitle.framework; path = framework/ExSubtitle.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				267DF174221BDF2200E8BAA6 /* ExSubtitle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +56,7 @@
 		267DF150221BDD1500E8BAA6 = {
 			isa = PBXGroup;
 			children = (
+				267DF177221BDF2D00E8BAA6 /* Framework */,
 				267DF15B221BDD1500E8BAA6 /* ExSubtitleDemo */,
 				267DF15A221BDD1500E8BAA6 /* Products */,
 			);
@@ -64,6 +83,14 @@
 			path = ExSubtitleDemo;
 			sourceTree = "<group>";
 		};
+		267DF177221BDF2D00E8BAA6 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				267DF173221BDF2200E8BAA6 /* ExSubtitle.framework */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,6 +101,7 @@
 				267DF155221BDD1500E8BAA6 /* Sources */,
 				267DF156221BDD1500E8BAA6 /* Frameworks */,
 				267DF157221BDD1500E8BAA6 /* Resources */,
+				267DF176221BDF2300E8BAA6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -284,6 +312,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZ42M266U2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/framework",
+				);
 				INFOPLIST_FILE = ExSubtitleDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -302,6 +334,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZ42M266U2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/framework",
+				);
 				INFOPLIST_FILE = ExSubtitleDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
