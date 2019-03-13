@@ -27,15 +27,15 @@ extension ExSubtitleInternal {
     func addTimeObserver() {
         // TODO: re-calculate interval
         self.observer = self.player.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 5, timescale: 1000), queue: DispatchQueue(label: "com.hongs.subtitle")) {
-            let ms = Int64(CMTimeGetSeconds($0) * 1000)
+            let current = $0
             if let timedText = self.timedText, let onCue = self.onCue {
                 // MARK: gather all cues between start and end
                 let cues = timedText.cues.filter {
-                    $0.startMs <= ms && ms <= $0.endMs
+                    $0.start <= current && current <= $0.end
                 }
 
-                if let cue = Cue.merge(from: cues, standardMs: ms) {
-                    print("\(ms) - \(cue.payloads.count)")
+                if let cue = Cue.merge(from: cues, current: current) {
+                    print("\(CMTimeGetSeconds(current)) - \(cue.payloads.count)")
                     onCue(cue)
                 }
             }

@@ -1,9 +1,10 @@
 
 import Foundation
+import CoreMedia
 
 public struct Cue {
-    public var startMs: Int64 // TODO: replace to Float
-    public var endMs: Int64
+    public var start: CMTime
+    public var end: CMTime
 
     public class Style: Codable {
         var origin: String?

@@ -1,27 +1,17 @@
 
 import Foundation
+import CoreMedia
 
 extension Cue {
 
-    init(startInterval: TimeInterval, endInterval: TimeInterval) {
-        self.startMs = Int64(startInterval * 1000)
-        self.endMs = Int64(endInterval * 1000)
-        self.payloads = []
-    }
-
-    static func merge(from cues: [Cue], standardMs: Int64) -> Cue? {
+    static func merge(from cues: [Cue], current: CMTime) -> Cue? {
         if cues.count == 0 { return nil }
-        // MARK: use the 10 millisecond unit for key
-        let timescale: Int64 = 10
-        let standard = standardMs / timescale
         var matched = false
 
-        var cue = Cue(startMs: cues[0].startMs, endMs: cues[0].endMs, payloads: [])
+        var cue = Cue(start: cues[0].start, end: cues[0].end, payloads: [])
         cues.forEach {
-            let start = $0.startMs / timescale
-            let end = $0.endMs / timescale
-            if start == standard || end == standard { matched = true }
-            if end != standard {
+            if $0.start == current || $0.end == current { matched = true }
+            if $0.end != current {
                 cue.payloads.append(contentsOf: $0.payloads)
             }
         }

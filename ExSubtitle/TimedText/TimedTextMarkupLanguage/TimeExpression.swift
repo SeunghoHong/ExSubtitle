@@ -1,5 +1,6 @@
 
 import Foundation
+import CoreMedia
 
 class TimeExpression {
     /*
@@ -86,6 +87,11 @@ class TimeExpression {
     func timeInterval(from string: String) -> TimeInterval {
         guard let timeExpressionType = TimeExpressionType(string) else { return -1 }
         return timeExpressionType.timeInterval(from: string)
+    }
+
+    func toCMTime(from string: String) -> CMTime {
+        let interval = self.timeInterval(from: string)
+        return CMTimeMakeWithSeconds(interval, preferredTimescale: 1000)
     }
 
     func toString(from interval: TimeInterval, type: TimeExpressionType) -> String {

@@ -107,10 +107,8 @@ extension TTML {
         } else {
             // TODO: make method
             guard let start = xml.timingAttributes[.begin], let end = xml.timingAttributes[.end] else { return }
-            let startInterval = TimeExpression().timeInterval(from: start)
-            let endInterval = TimeExpression().timeInterval(from: end)
-
-            var cue = Cue(startInterval: startInterval, endInterval: endInterval)
+            let timeExpression = TimeExpression()
+            var cue = Cue(start: timeExpression.toCMTime(from: start), end: timeExpression.toCMTime(from: end), payloads: [])
             var styles: Cue.Styles
 
             if let id = xml.region {
