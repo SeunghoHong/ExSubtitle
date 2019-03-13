@@ -16,10 +16,10 @@
 import Foundation
 
 class SRT: TimedText {
-    var cues: [Int64 : Cue] = [:]
+    var cues: [Cue] = []
 
-    func parse(_ data: Data) -> Bool {
+    func parse(_ data: Data, completion: @escaping (Bool, Error?) -> Void) {
         // TODO: line parser
-        return false
+        completion(true, nil)
     }
 }

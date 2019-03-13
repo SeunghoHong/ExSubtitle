@@ -141,7 +141,7 @@ tts:displayAlign="after"
 </tt>
 """.data(using: .utf8), mimetype: .ttml)
  */
-        //self.parse(data: try! Data(contentsOf: URL(fileURLWithPath: "/Users/seunghohong/Downloads/TtmlConvTest.w3c.ttml")), mimetype: .ttml)
+        self.parse(data: try! Data(contentsOf: URL(fileURLWithPath: "/Users/seunghohong/Downloads/TtmlConvTest.w3c.ttml")), mimetype: .ttml)
     }
 }
 
@@ -177,14 +177,18 @@ extension ViewController {
     }
     
     func onCue(_ cue: Cue) {
-        print("\(cue.start)")
         DispatchQueue.main.async {
-            var string = "Setting\n"
-            string += cue.payloads2.map { $0.setting.toString() }.joined(separator: "\n")
-            string += "\n\n"
-            string += "Text \(cue.payloads2.count)\n"
-            string += cue.payloads2.map{ $0.text }.joined(separator: "\n")
-            self.textView.text = string
+            let payloads = cue.payloads.map {
+"""
+region
+\($0.styles?.region?.toString() ?? "")
+style
+\($0.styles?.style?.toString() ?? "")
+text
+\($0.text)
+"""
+            }.joined(separator: "\n")
+            self.textView.text = "count: \(cue.payloads.count)\n" + payloads
         }
     }
 

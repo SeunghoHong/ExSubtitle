@@ -37,7 +37,7 @@
 import Foundation
 
 class TTML: NSObject {
-    var cues: [Int64 : Cue] = [:]
+    var cues: [Cue] = []
 
     var root = XML()
     var xml: XML!
@@ -51,7 +51,7 @@ class TTML: NSObject {
 
 extension TTML: TimedText {
 
-    func parse(_ data: Data) -> Bool {
+    func parse(_ data: Data, completion: @escaping (Bool, Error?) -> Void) {
         let parser = XMLParser(data: data)
         parser.shouldProcessNamespaces = true
         parser.shouldReportNamespacePrefixes = true
@@ -59,11 +59,12 @@ extension TTML: TimedText {
         self.parent = self.root
         if parser.parse() == false {
             print("\(parser.parserError?.localizedDescription as Optional)")
-            return false
+            completion(false, parser.parserError)
+            return
         }
 
         self.search(self.body, appliance: self.applyToCues(_:))
-        return true
+        completion(true, nil)
     }
 }
 
@@ -108,27 +109,20 @@ extension TTML {
             guard let start = xml.timingAttributes[.begin], let end = xml.timingAttributes[.end] else { return }
             let startInterval = TimeExpression().timeInterval(from: start)
             let endInterval = TimeExpression().timeInterval(from: end)
-            let keyTime = Int64((startInterval * 1000) / 10)
-            
-            var cue = self.cues[keyTime] ?? Cue(start: Float64(startInterval), end: Float64(endInterval))
-            let setting = Cue.Setting()
-            
+
+            var cue = Cue(startInterval: startInterval, endInterval: endInterval)
+            var styles: Cue.Styles
+
             if let id = xml.region {
-                setting.region.apply(with: self.applyToRegion(id))
+                styles.region = Cue.Style(with: self.applyToRegion(id))
             }
 
             if let id = xml.style {
-                setting.style.apply(with: self.applyToStyle(id))
+                styles.style = Cue.Style(with: self.applyToStyle(id))
             }
-            
-            cue.payloads2.append((setting, xml.string))
-            self.cues[keyTime] = cue
 
-            // MARK: empty cue
-            do {
-                let keyTime = Int64((endInterval * 1000) / 10)
-                self.cues[keyTime] = Cue(start: Float64(endInterval), end: Float64(endInterval))
-            }
+            cue.payloads.append((xml.string, "", styles))
+            self.cues.append(cue)
         }
     }
 

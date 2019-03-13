@@ -20,10 +20,12 @@ enum StylingAttribute: String, CaseIterable {
     case displayAlign, backgroundColor
     case fontStyle, fontSize
     case fontFamily, fontWeight
-    case color
+    case color, padding
     case textDecoration, textAlign
     case zIndex, opacity
     case border, ruby
+    case textOutline
+    case lineHight
 }
 
 extension StylingAttribute {

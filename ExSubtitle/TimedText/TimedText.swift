@@ -17,10 +17,8 @@ extension ExSubtitle.MimeType {
 }
 
 protocol TimedText: class {
-    // MARK: The time unit of key is millisecond
-    // MARK: make 10 millisecond unit for notifying through AVPlayer.periodicTimeObserver
-    var cues: [Int64 : Cue] { get set }
+    var cues: [Cue] { get set }
 
-    func parse(_ data: Data) -> Bool
+    func parse(_ data: Data, completion: @escaping (Bool, Error?) -> Void)
 }
 

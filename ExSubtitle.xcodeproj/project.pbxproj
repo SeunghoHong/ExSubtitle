@@ -20,6 +20,7 @@
 		2607E6EE221FF4DE0080EFB3 /* Head.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2607E6ED221FF4DE0080EFB3 /* Head.swift */; };
 		2607E6F0221FF6F90080EFB3 /* Body.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2607E6EF221FF6F90080EFB3 /* Body.swift */; };
 		2607E6F2221FF76A0080EFB3 /* Div.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2607E6F1221FF76A0080EFB3 /* Div.swift */; };
+		262F356022375650003D7CA9 /* CueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F355F22375650003D7CA9 /* CueExtension.swift */; };
 		2684C01822310BE900BD1320 /* StylingAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2684C01722310BE900BD1320 /* StylingAttribute.swift */; };
 		2684C01A223113BB00BD1320 /* TimingAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2684C019223113BA00BD1320 /* TimingAttribute.swift */; };
 		2684C01C223114FE00BD1320 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2684C01B223114FE00BD1320 /* Util.swift */; };
@@ -51,6 +52,7 @@
 		2607E6ED221FF4DE0080EFB3 /* Head.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Head.swift; sourceTree = "<group>"; };
 		2607E6EF221FF6F90080EFB3 /* Body.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Body.swift; sourceTree = "<group>"; };
 		2607E6F1221FF76A0080EFB3 /* Div.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Div.swift; sourceTree = "<group>"; };
+		262F355F22375650003D7CA9 /* CueExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueExtension.swift; sourceTree = "<group>"; };
 		2684C01722310BE900BD1320 /* StylingAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylingAttribute.swift; sourceTree = "<group>"; };
 		2684C019223113BA00BD1320 /* TimingAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimingAttribute.swift; sourceTree = "<group>"; };
 		2684C01B223114FE00BD1320 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -96,12 +98,12 @@
 				26A09EDB222397A6008F7982 /* Span.swift */,
 				26A09ED92223974C008F7982 /* P.swift */,
 				2607E6F1221FF76A0080EFB3 /* Div.swift */,
-				2607E6EF221FF6F90080EFB3 /* Body.swift */,
-				2607E6ED221FF4DE0080EFB3 /* Head.swift */,
-				2607E6E9221FF4150080EFB3 /* Layout.swift */,
 				2607E6EA221FF4150080EFB3 /* Region.swift */,
 				2607E6D6221FF1870080EFB3 /* Style.swift */,
+				2607E6E9221FF4150080EFB3 /* Layout.swift */,
 				2607E6D3221FF1870080EFB3 /* Styling.swift */,
+				2607E6ED221FF4DE0080EFB3 /* Head.swift */,
+				2607E6EF221FF6F90080EFB3 /* Body.swift */,
 				2607E6DB221FF20C0080EFB3 /* TTML.swift */,
 			);
 			path = TimedTextMarkupLanguage;
@@ -178,6 +180,7 @@
 		26E80FDA221AA11C007004F9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				262F355F22375650003D7CA9 /* CueExtension.swift */,
 				26B67EB3221EA4E300104090 /* StringExtension.swift */,
 			);
 			path = Utils;
@@ -328,6 +331,7 @@
 				2607E6EB221FF4150080EFB3 /* Layout.swift in Sources */,
 				2607E6F0221FF6F90080EFB3 /* Body.swift in Sources */,
 				26FCE7F522323A6E00C5CAA3 /* FullXML.swift in Sources */,
+				262F356022375650003D7CA9 /* CueExtension.swift in Sources */,
 				2607E6DC221FF20C0080EFB3 /* TTML.swift in Sources */,
 				2607E6D7221FF1880080EFB3 /* Styling.swift in Sources */,
 				2684C01822310BE900BD1320 /* StylingAttribute.swift in Sources */,
