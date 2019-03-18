@@ -194,7 +194,7 @@ text
         guard let data = data else { return }
 
         self.start()
-        self.exSubtitle.parse(with: data, mimetype: mimetype)
+        self.exSubtitle.parse(from: data, mimetype: mimetype)
         self.exSubtitle.setOnCue(self.onCue(_:))
     }
 }

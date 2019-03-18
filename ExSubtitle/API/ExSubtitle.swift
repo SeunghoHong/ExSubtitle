@@ -30,7 +30,7 @@ public class ExSubtitle : NSObject {
 
 public extension ExSubtitle {
 
-    func parse(with source: Data, mimetype: MimeType) {
+    func parse(from source: Data, mimetype: MimeType) {
         self.impl.parse(with: source, mimetype: mimetype)
     }
 }
