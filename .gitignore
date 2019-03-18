@@ -72,6 +72,7 @@ fastlane/test_output
 # demo
 ExSubtitleDemo
 ExSubtitleDemo.xcodeproj
+ExSubtitle.xcworkspace
 
 # mac
 .DS_Store
