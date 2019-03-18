@@ -5,6 +5,7 @@ import AVFoundation
 class ExSubtitleInternal : NSObject {
 
     var timedText: TimedText!
+    var onCue: ((Cue) -> Void)!
     
     weak var player: AVPlayer!
     var observer: Any!
@@ -24,8 +25,20 @@ class ExSubtitleInternal : NSObject {
 extension ExSubtitleInternal {
     
     func addTimeObserver() {
-        self.observer = self.player.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 33, timescale: 1000), queue: DispatchQueue(label: "com.hongs.subtitle")) {
-            let _ = Float(CMTimeGetSeconds($0))
+        // TODO: re-calculate interval
+        self.observer = self.player.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 5, timescale: 1000), queue: DispatchQueue(label: "com.hongs.subtitle")) {
+            let current = $0
+            if let timedText = self.timedText, let onCue = self.onCue {
+                // MARK: gather all cues between start and end
+                let cues = timedText.cues.filter {
+                    $0.start <= current && current <= $0.end
+                }
+
+                if let cue = Cue.merge(from: cues, current: current) {
+                    print("\(CMTimeGetSeconds(current)) - \(cue.payloads.count)")
+                    onCue(cue)
+                }
+            }
         }
     }
 
@@ -36,11 +49,15 @@ extension ExSubtitleInternal {
 
 extension ExSubtitleInternal {
 
-    func prepare(with source: Data, mimetype: ExSubtitle.MimeType) {
+    func parse(with source: Data, mimetype: ExSubtitle.MimeType) {
         DispatchQueue.global().async {
             self.timedText = mimetype.create()
-            // TODO: check error and notify
-            self.timedText.parse(source)
+            self.timedText.parse(source) {
+                guard $0 == true else { return }
+                if let error = $1 {
+                    print("E: \(error.localizedDescription)")
+                }
+            }
         }
     }
 }

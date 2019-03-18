@@ -1,10 +1,42 @@
 
 import Foundation
+import CoreMedia
 
 public struct Cue {
-    var start: Int64 // TODO: replace to Float
-    var end: Int64
+    public var start: CMTime
+    public var end: CMTime
 
-    typealias Payload = (setting: String, text: String)
-    var payloads: [Int64 : Payload]
+    public class Style: Codable {
+        var origin: String?
+        var extent: String?
+        var displayAlign: String?
+        var backgroundColor: String?
+        var fontStyle: String?
+        var fontSize: String?
+        var fontFamily: String?
+        var fontWeight: String?
+        var color: String?
+        var padding: String?
+        var textDecoration: String?
+        var textAlign: String?
+        var zIndex: String?
+        var opacity: String?
+        var border: String?
+        var ruby: String?
+        var textOutline: String?
+        var lineHeight: String?
+    }
+
+    public typealias Styles = (region: Style?, style: Style?)
+    public typealias Payload = (text: String, setting: String?, styles: Styles?)
+    public var payloads: [Payload]
+}
+
+public extension Cue.Style {
+
+    func toString() -> String {
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(self)
+        return String(data: jsonData, encoding: .utf8) ?? ""
+    }
 }
