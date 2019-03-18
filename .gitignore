@@ -5,6 +5,7 @@
 ## Build generated
 build/
 DerivedData/
+framework/
 
 ## Various settings
 *.pbxuser
@@ -16,6 +17,7 @@ DerivedData/
 *.perspectivev3
 !default.perspectivev3
 xcuserdata/
+xcshareddata/
 
 ## Other
 *.moved-aside
@@ -68,6 +70,9 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 
 # demo
-ExSubtitleDemo/
-framework
+ExSubtitleDemo
+ExSubtitleDemo.xcodeproj
+
+# mac
+.DS_Store
 
