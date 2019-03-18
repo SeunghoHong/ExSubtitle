@@ -28,26 +28,26 @@ extension Cue.Style {
     }
 
     func apply(with attributes: [StylingAttribute : String]) {
-        for attribute in attributes {
-            switch attribute.key {
-            case .origin: self.origin = attribute.value
-            case .extent: self.extent = attribute.value
-            case .displayAlign: self.displayAlign = attribute.value
-            case .backgroundColor: self.backgroundColor = attribute.value
-            case .fontStyle: self.fontStyle = attribute.value
-            case .fontSize: self.fontSize = attribute.value
-            case .fontFamily: self.fontFamily = attribute.value
-            case .fontWeight: self.fontWeight = attribute.value
-            case .color: self.color = attribute.value
-            case .padding: self.padding = attribute.value
-            case .textDecoration: self.textDecoration = attribute.value
-            case .textAlign: self.textAlign = attribute.value
-            case .zIndex: self.zIndex = attribute.value
-            case .opacity: self.opacity = attribute.value
-            case .border: self.border = attribute.value
-            case .ruby: self.ruby = attribute.value
-            case .textOutline: self.textOutline = attribute.value
-            case .lineHight: self.lineHeight = attribute.value
+        for (key, value) in attributes {
+            switch key {
+            case .origin: self.origin = value
+            case .extent: self.extent = value
+            case .displayAlign: self.displayAlign = value
+            case .backgroundColor: self.backgroundColor = value
+            case .fontStyle: self.fontStyle = value
+            case .fontSize: self.fontSize = value
+            case .fontFamily: self.fontFamily = value
+            case .fontWeight: self.fontWeight = value
+            case .color: self.color = value
+            case .padding: self.padding = value
+            case .textDecoration: self.textDecoration = value
+            case .textAlign: self.textAlign = value
+            case .zIndex: self.zIndex = value
+            case .opacity: self.opacity = value
+            case .border: self.border = value
+            case .ruby: self.ruby = value
+            case .textOutline: self.textOutline = value
+            case .lineHight: self.lineHeight = value
             }
         }
     }

@@ -105,18 +105,17 @@ extension TTML {
                 applyToCue(child as! FullXML)
             }
         } else {
-            // TODO: make method
             guard let start = xml.timingAttributes[.begin], let end = xml.timingAttributes[.end] else { return }
             let timeExpression = TimeExpression()
             var cue = Cue(start: timeExpression.toCMTime(from: start), end: timeExpression.toCMTime(from: end), payloads: [])
             var styles: Cue.Styles
 
             if let id = xml.region {
-                styles.region = Cue.Style(with: self.applyToRegion(id))
+                styles.region = Cue.Style(with: self.applyToRegion(with: id))
             }
 
             if let id = xml.style {
-                styles.style = Cue.Style(with: self.applyToStyle(id))
+                styles.style = Cue.Style(with: self.applyToStyle(with: id))
             }
 
             cue.payloads.append((xml.string, "", styles))
@@ -124,16 +123,29 @@ extension TTML {
         }
     }
 
-    func applyToRegion(_ id: String?) -> [StylingAttribute : String] {
+    func applyToRegion(with id: String?) -> [StylingAttribute : String] {
         guard let id = id, let region = self.find(self.head, id: id) as? Region else { return [:] }
-        let attributes = self.applyToStyle(region.style)
-        return region.stylingAttributes.reduce(attributes) { var r = $0; r[$1.0] = $1.1; return r }
+        region.stylingAttributes += self.applyToStyle(with: region.style)
+        region.children.forEach {
+            if let child = $0 as? Style {
+                region.stylingAttributes += child.stylingAttributes
+            }
+        }
+
+        return region.stylingAttributes
     }
 
-    func applyToStyle(_ id: String?) -> [StylingAttribute : String] {
+    func applyToStyle(with id: String?) -> [StylingAttribute : String] {
         guard let id = id, let style = self.find(self.head, id: id) as? Style else { return [:] }
-        let attributes = self.applyToStyle(style.style)
-        return style.stylingAttributes.reduce(attributes) { var r = $0; r[$1.0] = $1.1; return r }
+        style.stylingAttributes += self.applyToStyle(with: style.style)
+        style.children.forEach {
+            if let child = $0 as? Style {
+                style.stylingAttributes += child.stylingAttributes
+            }
+        }
+
+//        return style.stylingAttributes.reduce(attributes) { var r = $0; r[$1.0] = $1.1; return r }
+        return style.stylingAttributes
     }
 }
 

@@ -32,6 +32,7 @@
 		26A09EE42223DCE2008F7982 /* XML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A09EE32223DCE1008F7982 /* XML.swift */; };
 		26A09EE62223DEE4008F7982 /* TAG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A09EE52223DEE3008F7982 /* TAG.swift */; };
 		26B67EB4221EA4E300104090 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B67EB3221EA4E300104090 /* StringExtension.swift */; };
+		26E28467223F68B900AACCD5 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E28466223F68B900AACCD5 /* DictionaryExtension.swift */; };
 		26E80FE5221AA11C007004F9 /* ExSubtitleInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E80FD9221AA11C007004F9 /* ExSubtitleInternal.swift */; };
 		26E80FE8221AA11C007004F9 /* TimedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E80FDE221AA11C007004F9 /* TimedText.swift */; };
 		26E80FEC221AA11C007004F9 /* Cue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E80FE3221AA11C007004F9 /* Cue.swift */; };
@@ -65,6 +66,7 @@
 		26A09EE32223DCE1008F7982 /* XML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XML.swift; sourceTree = "<group>"; };
 		26A09EE52223DEE3008F7982 /* TAG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TAG.swift; sourceTree = "<group>"; };
 		26B67EB3221EA4E300104090 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		26E28466223F68B900AACCD5 /* DictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
 		26E80FCD221A955E007004F9 /* ExSubtitle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ExSubtitle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26E80FD1221A955E007004F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26E80FD9221AA11C007004F9 /* ExSubtitleInternal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExSubtitleInternal.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 		26E80FDA221AA11C007004F9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				26E28466223F68B900AACCD5 /* DictionaryExtension.swift */,
 				26902C282238EB2D00344AB7 /* CMTimeExtension.swift */,
 				262F355F22375650003D7CA9 /* CueExtension.swift */,
 				26B67EB3221EA4E300104090 /* StringExtension.swift */,
@@ -320,6 +323,7 @@
 				2684C01E2231349800BD1320 /* Set.swift in Sources */,
 				2607E6EC221FF4150080EFB3 /* Region.swift in Sources */,
 				26A09EE62223DEE4008F7982 /* TAG.swift in Sources */,
+				26E28467223F68B900AACCD5 /* DictionaryExtension.swift in Sources */,
 				2607E6E5221FF31F0080EFB3 /* WebVTT.swift in Sources */,
 				26902C292238EB2D00344AB7 /* CMTimeExtension.swift in Sources */,
 				2607E6F2221FF76A0080EFB3 /* Div.swift in Sources */,
