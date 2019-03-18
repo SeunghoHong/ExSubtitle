@@ -86,7 +86,7 @@ Stop passing on your inferior genes, you horny animals!
     }
 
     @IBAction func touchUpTTML(_ sender: Any) {
-        /*
+        #if true
         self.parse(data: """
 <?xml version="1.0" encoding="UTF-8"?>
 <tt xmlns="http://www.w3.org/ns/ttml">
@@ -96,24 +96,22 @@ Stop passing on your inferior genes, you horny animals!
       <ttm:copyright>The Authors (c) 2006</ttm:copyright>
     </metadata>
     <styling xmlns:tts="http://www.w3.org/ns/ttml#styling">
-      <style xml:id="s1"
-tts:color="white"
-tts:fontFamily="proportionalSansSerif"
-tts:fontSize="22px"
-tts:textAlign="center"
-      />
+      <style xml:id="s1" tts:color="white" tts:fontFamily="proportionalSansSerif" tts:fontSize="22px" tts:textAlign="center" />
       <style xml:id="s2" style="s1" tts:color="yellow"/>
       <style xml:id="s1Right" style="s1" tts:textAlign="end" />
       <style xml:id="s2Left" style="s2" tts:textAlign="start" />
     </styling>
     <layout xmlns:tts="http://www.w3.org/ns/ttml#styling">
-      <region xml:id="subtitleArea"
-style="s1"
-tts:extent="560px 62px"
-tts:padding="5px 3px"
-tts:backgroundColor="black"
-tts:displayAlign="after"
-      />
+      <region xml:id="subtitleArea" style="s1" tts:extent="560px 62px" tts:padding="5px 3px" tts:backgroundColor="black" tts:displayAlign="after" />
+<region xml:id="r1" style="s2">
+  <style tts:extent="306px 114px"/>
+  <style tts:backgroundColor="red"/>
+  <style tts:backgroundOrigin="padding"/>
+  <style tts:padding="27px 72px"/>
+  <style tts:backgroundRepeat="noRepeat"/>
+  <style tts:backgroundImage="#blue102px57px"/>
+  <style tts:backgroundClip="content"/>
+</region>
     </layout>
   </head>
   <body region="subtitleArea">
@@ -125,7 +123,7 @@ tts:displayAlign="after"
         that the image formed on<br/>
         the Retina should be inverted?
       </p>
-      <p xml:id="subtitle3" begin="10.0s" end="16.0s" style="s2">
+      <p xml:id="subtitle3" begin="10.0s" end="16.0s" region="r1" style="s2">
         It is puzzling, why is it<br/>
         we do not see things upside-down?
       </p>
@@ -140,8 +138,7 @@ tts:displayAlign="after"
   </body>
 </tt>
 """.data(using: .utf8), mimetype: .ttml)
- */
-        self.parse(data: try! Data(contentsOf: URL(fileURLWithPath: "/Users/seunghohong/Downloads/TtmlConvTest.w3c.ttml")), mimetype: .ttml)
+        #endif
     }
 }
 
@@ -161,7 +158,7 @@ extension ViewController {
     func start() {
         self.stop()
 
-        if let url = URL(string: "https://ext.inisoft.tv/cj_tving/hls/high.m3u8") {
+        if let url = URL(string: "https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_4x3/bipbop_4x3_variant.m3u8") {
             self.asset = AVAsset(url: url)
             self.playerItem = AVPlayerItem(asset: self.asset)
             self.player = AVPlayer(playerItem: self.playerItem)
@@ -189,6 +186,7 @@ text
 """
             }.joined(separator: "\n")
             self.textView.text = "count: \(cue.payloads.count)\n" + payloads
+            print("\(self.textView.text ?? "")")
         }
     }
 
