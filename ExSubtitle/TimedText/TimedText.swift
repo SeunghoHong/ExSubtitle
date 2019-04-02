@@ -19,6 +19,6 @@ extension ExSubtitle.MimeType {
 protocol TimedText: class {
     var cues: [Cue] { get set }
 
-    func parse(_ data: Data, completion: @escaping (Bool, Error?) -> Void)
+    func parse(_ data: Data, completionHandler: @escaping () -> Void, errorHandler: @escaping (Error?) -> Void)
 }
 

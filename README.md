@@ -53,19 +53,16 @@ ass     | SubStationAlpha
 Applicaton should create the `ExSubtitle` instance with an `AVPlayer`.
 
 *Declaration:*
-
 ``` swift
 init(player: AVPlayer)
 ```
 
 *Parameters:*
-
 Name    | Description
 ------- | ---------------------------------
 player  | AVPlayer
 
 *Example:*
-
 ``` swift
 var asset = AVAsset(url: url)
 var playerItem = AVPlayerItem(asset: asset)
@@ -74,28 +71,30 @@ var player = AVPlayer(playerItem: playerItem)
 var exSubtitle = ExSubtitle(player: player)
 ```
 
-#### parse(from:mimetype:)
+#### parse(from:mimetype:completionHandler:errorHandler:)
 
 Applicaton should get the subtitle data and mimtype from the file or url resource.
 
 *Declaration:*
-
 ``` swift
-func parse(from data: Data, mimetype: MimeType)
+func parse(from source: Data, mimetype: MimeType, completionHandler: () -> Void, errorHandler: (Error?) -> Void)
 ```
 
 *Parameters:*
-
-Name    | Description
-------- | ---------------------------------
-onCue	| No description.
-
-> // TODO: error handling
+Name                | Description
+------------------- | ---------------------------------
+source	            | No description.
+mimetype	        | No description.
+completionHandler	| No description.
+errorHandler	    | No description.
 
 *Example:*
-
 ``` swift
-self.exSubtitle.parse(from: data, mimetype: .ttml)
+self.exSubtitle.parse(from: data, mimetype: .ttml, completionHandler: {
+    print("success")
+}, errorHandler: { (error) in
+    print("failure")
+})
 ```
 
 #### setOnCue(_:)
@@ -109,13 +108,11 @@ func setOnCue(_ onCue: @escaping ((Cue) -> Void))
 ```
 
 *Parameters:*
-
 Name    | Description
 ------- | ---------------------------------
 onCue	| No description.
 
 *Example:*
-
 ``` swift
 self.exSubtitle.setOnCue {
     $0.payloads.forEach {
@@ -131,7 +128,6 @@ self.exSubtitle.setOnCue {
 ##### start
 
 *Declaration*
-
 ``` swift
 var start: CMTime
 ```
@@ -139,7 +135,6 @@ var start: CMTime
 ##### end
 
 *Declaration*
-
 ``` swift
 var end: CMTime
 ```
@@ -147,7 +142,6 @@ var end: CMTime
 ##### payloads
 
 *Declaration*
-
 ``` swift
 typealias Styles = (region: Style?, style: Style?)
 typealias Payload = (text: String, setting: String?, styles: Styles?)

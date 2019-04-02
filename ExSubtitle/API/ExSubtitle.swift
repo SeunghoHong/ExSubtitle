@@ -30,8 +30,8 @@ public class ExSubtitle : NSObject {
 
 public extension ExSubtitle {
 
-    func parse(from source: Data, mimetype: MimeType) {
-        self.impl.parse(with: source, mimetype: mimetype)
+    func parse(from source: Data, mimetype: MimeType, completionHandler: @escaping () -> Void, errorHandler: @escaping (Error?) -> Void) {
+        self.impl.parse(from: source, mimetype: mimetype, completionHandler: completionHandler, errorHandler: errorHandler)
     }
 }
 

@@ -18,8 +18,8 @@ import Foundation
 class SRT: TimedText {
     var cues: [Cue] = []
 
-    func parse(_ data: Data, completion: @escaping (Bool, Error?) -> Void) {
+    func parse(_ data: Data, completionHandler: @escaping () -> Void, errorHandler: @escaping (Error?) -> Void) {
         // TODO: line parser
-        completion(true, nil)
+        completionHandler()
     }
 }

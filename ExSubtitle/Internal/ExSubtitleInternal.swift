@@ -51,15 +51,10 @@ extension ExSubtitleInternal {
 
 extension ExSubtitleInternal {
 
-    func parse(with source: Data, mimetype: ExSubtitle.MimeType) {
+    func parse(from source: Data, mimetype: ExSubtitle.MimeType, completionHandler: @escaping () -> Void, errorHandler: @escaping (Error?) -> Void) {
         DispatchQueue.global().async {
             self.timedText = mimetype.create()
-            self.timedText.parse(source) {
-                guard $0 == true else { return }
-                if let error = $1 {
-                    print("E: \(error.localizedDescription)")
-                }
-            }
+            self.timedText.parse(source, completionHandler: completionHandler, errorHandler: errorHandler)
         }
     }
 }

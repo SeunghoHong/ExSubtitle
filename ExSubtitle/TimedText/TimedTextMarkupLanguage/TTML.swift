@@ -51,7 +51,7 @@ class TTML: NSObject {
 
 extension TTML: TimedText {
 
-    func parse(_ data: Data, completion: @escaping (Bool, Error?) -> Void) {
+    func parse(_ data: Data, completionHandler: @escaping () -> Void, errorHandler: @escaping (Error?) -> Void) {
         let parser = XMLParser(data: data)
         parser.shouldProcessNamespaces = true
         parser.shouldReportNamespacePrefixes = true
@@ -59,12 +59,12 @@ extension TTML: TimedText {
         self.parent = self.root
         if parser.parse() == false {
             print("\(parser.parserError?.localizedDescription as Optional)")
-            completion(false, parser.parserError)
+            errorHandler(parser.parserError)
             return
         }
 
         self.search(self.body, appliance: self.applyToCues(_:))
-        completion(true, nil)
+        completionHandler()
     }
 }
 

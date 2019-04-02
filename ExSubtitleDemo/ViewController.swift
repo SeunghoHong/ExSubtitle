@@ -194,8 +194,19 @@ text
         guard let data = data else { return }
 
         self.start()
-        self.exSubtitle.parse(from: data, mimetype: mimetype)
+        self.exSubtitle.parse(from: data, mimetype: mimetype, completionHandler: { print("success") }, errorHandler: onError(_:))
         self.exSubtitle.setOnCue(self.onCue(_:))
+    }
+}
+
+extension ViewController {
+
+    func onError(_ error: Error?) {
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Calcel", style: .cancel, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
 }
 
