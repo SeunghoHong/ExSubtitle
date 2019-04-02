@@ -6,6 +6,7 @@ class ExSubtitleInternal : NSObject {
 
     var timedText: TimedText!
     var onCue: ((Cue) -> Void)!
+    var force = true
     
     weak var player: AVPlayer!
     var observer: Any!
@@ -34,9 +35,10 @@ extension ExSubtitleInternal {
                     $0.start <= current && current <= $0.end
                 }
 
-                if let cue = Cue.merge(from: cues, current: current) {
+                if let cue = Cue.merge(from: cues, current: current, force: self.force) {
                     print("\(CMTimeGetSeconds(current)) - \(cue.payloads.count)")
                     onCue(cue)
+                    self.force = false
                 }
             }
         }

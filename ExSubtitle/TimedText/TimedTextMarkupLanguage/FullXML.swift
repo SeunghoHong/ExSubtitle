@@ -31,7 +31,8 @@ class FullXML: XML {
             guard let parent = parent as? FullXML else { return }
             if self.region == nil { self.region = parent.region }
             if self.style == nil { self.style = parent.style }
-            
+
+            // TODO: make array extension
             parent.timingAttributes.forEach {
                 if Array(self.timingAttributes.keys).contains($0.key) {
                     // MARK: skip
@@ -39,7 +40,14 @@ class FullXML: XML {
                     self.timingAttributes[$0.key] = $0.value
                 }
             }
-            // TODO: check about stylingAttributes
+
+            parent.stylingAttributes.forEach {
+                if Array(self.stylingAttributes.keys).contains($0.key) {
+                    // MARK: skip
+                } else {
+                    self.stylingAttributes[$0.key] = $0.value
+                }
+            }
         }
     }
 }

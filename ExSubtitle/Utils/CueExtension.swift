@@ -4,7 +4,7 @@ import CoreMedia
 
 extension Cue {
 
-    static func merge(from cues: [Cue], current: CMTime) -> Cue? {
+    static func merge(from cues: [Cue], current: CMTime, force: Bool = false) -> Cue? {
         if cues.count == 0 { return nil }
         var matched = false
 
@@ -16,7 +16,7 @@ extension Cue {
             }
         }
 
-        return matched ? cue : nil
+        return (matched || force) ? cue : nil
     }
 }
 
@@ -50,5 +50,26 @@ extension Cue.Style {
             case .lineHight: self.lineHeight = value
             }
         }
+    }
+
+    static func += (lhs: Cue.Style, rhs: Cue.Style) {
+        if let origin = rhs.origin { lhs.origin = origin }
+        if let extent = rhs.extent { lhs.extent = extent }
+        if let displayAlign = rhs.displayAlign { lhs.displayAlign = displayAlign }
+        if let backgroundColor = rhs.backgroundColor { lhs.backgroundColor = backgroundColor }
+        if let fontStyle = rhs.fontStyle { lhs.fontStyle = fontStyle }
+        if let fontSize = rhs.fontSize { lhs.fontSize = fontSize }
+        if let fontFamily = rhs.fontFamily { lhs.fontFamily = fontFamily }
+        if let fontWeight = rhs.fontWeight { lhs.fontWeight = fontWeight }
+        if let color = rhs.color { lhs.color = color }
+        if let padding = rhs.padding { lhs.padding = padding }
+        if let textDecoration = rhs.textDecoration { lhs.textDecoration = textDecoration }
+        if let textAlign = rhs.textAlign { lhs.textAlign = textAlign }
+        if let zIndex = rhs.zIndex { lhs.zIndex = zIndex }
+        if let opacity = rhs.opacity { lhs.opacity = opacity }
+        if let border = rhs.border { lhs.border = border }
+        if let ruby = rhs.ruby { lhs.ruby = ruby }
+        if let textOutline = rhs.textOutline { lhs.textOutline = textOutline }
+        if let lineHeight = rhs.lineHeight { lhs.lineHeight = lineHeight }
     }
 }

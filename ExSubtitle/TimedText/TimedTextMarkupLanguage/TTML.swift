@@ -116,6 +116,12 @@ extension TTML {
 
             if let id = xml.style {
                 styles.style = Cue.Style(with: self.applyToStyle(with: id))
+            } else {
+                styles.style = Cue.Style(with: [:])
+            }
+
+            if let style = styles.style {
+                style += Cue.Style(with: xml.stylingAttributes)
             }
 
             cue.payloads.append((xml.string, "", styles))
